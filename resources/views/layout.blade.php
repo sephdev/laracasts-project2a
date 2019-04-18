@@ -7,6 +7,11 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
   <body>
+    <nav class="nav">
+      <ul>
+        <li><a href="/projects">Home</a></li>
+      </ul>
+    </nav>
       <div class="container">
         @yield('content')
       </div>
