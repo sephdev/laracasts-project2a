@@ -13,4 +13,4 @@ use App\Http\Controllers\ProjectsController;
 */
 
 Route::resource('projects', 'ProjectsController');
-Route::resource('posts', 'PostsController');
+Route::patch('/tasks/{task}', 'ProjectTasksController@update');
