@@ -13,7 +13,7 @@ class ProjectTasksController extends Controller
             'description' => 'required'
         ]);
 
-        $project->addTask(request($attributes));
+        $project->addTask($attributes);
 
         return back();
     }
