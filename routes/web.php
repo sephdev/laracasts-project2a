@@ -1,11 +1,10 @@
 <?php
 
-app()->singleton('App\Services\Twitter', function() {
-    return new \App\Services\Twitter('asdfsdafsdfdsf');
-});
+use App\Services\Twitter;
 
-Route::get('/', function(){
-    dd(app('App\Example'));
+Route::get('/', function (Twitter $twitter) {
+    
+    dd($twitter);
 
     return view('welcome');
 });
