@@ -41,7 +41,7 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {        
-        
+        // abort_unless(auth()->user()->owns($project), 403);
 
         return view('projects.show', compact('project'));
     }
