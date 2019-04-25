@@ -1,15 +1,18 @@
 <?php
 
-use App\Services\Twitter;
+// use App\Services\Twitter;
 
-Route::get('/', function (Twitter $twitter) {
+// Route::get('/', function (Twitter $twitter) {
     
-    dd($twitter);
-
-    return view('welcome');
-});
+//     // dd($twitter);
+//     return view('welcome');
+// });
 
 Route::resource('projects', 'ProjectsController');
 
 Route::post('projects/{project}/tasks', 'ProjectTasksController@store');
 Route::patch('/tasks/{task}', 'ProjectTasksController@update');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

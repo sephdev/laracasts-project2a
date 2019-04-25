@@ -4,7 +4,7 @@
     <h1 class="title">Projects</h1>
 
     <a href="/projects/create">Create New Project</a>
-    <br><br>
+    <br><br>    
 
     @foreach ($projects as $project)
         <li>
