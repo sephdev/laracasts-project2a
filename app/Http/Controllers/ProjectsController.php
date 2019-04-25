@@ -43,6 +43,12 @@ class ProjectsController extends Controller
     {        
         // abort_unless(auth()->user()->owns($project), 403);
 
+        // abort_if($project->owner_id !== auth()->id(), 403);
+
+        // $this->authorize('update', $project);
+
+        abort_unless(\Gate::allows('update', $project), 403);
+
         return view('projects.show', compact('project'));
     }
 
@@ -52,7 +58,7 @@ class ProjectsController extends Controller
     }
 
     public function update(Project $project)
-    {
+    {        
         $project->update(request([
             'title',
             'description'
