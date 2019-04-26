@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project;
 use App\Services\Twitter;
+use Mail;
+use App\Mail\ProjectCreated;
 
 class ProjectsController extends Controller
 {
@@ -15,7 +17,7 @@ class ProjectsController extends Controller
 
     public function index()
     {
-        $projects = Project::where('owner_id', auth()->id())->get();
+        $projects = Project::where('owner_id', auth()->id())->get();  
 
         return view('projects.index', compact('projects'));
     }
@@ -34,7 +36,11 @@ class ProjectsController extends Controller
 
         $attributes['owner_id'] = auth()->id();
 
-        Project::create($attributes);
+        $project =  Project::create($attributes);
+
+        Mail::to($project->owner->email)->send(
+            new ProjectCreated($project)
+        );
 
         return redirect('/projects');
     }
