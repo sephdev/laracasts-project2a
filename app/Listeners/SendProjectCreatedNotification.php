@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\ProjectCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -20,10 +21,10 @@ class SendProjectCreatedNotification
     /**
      * Handle the event.
      *
-     * @param  object  $event
+     * @param  ProjectCreated  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(ProjectCreated $event)
     {
         //
     }
