@@ -17,8 +17,6 @@ class ProjectsController extends Controller
 
     public function index()
     {
-        // $projects = Project::where('owner_id', auth()->id())->get();        
-
         return view('projects.index', [
             'projects' => auth()->user()->projects
         ]);
@@ -31,10 +29,7 @@ class ProjectsController extends Controller
 
     public function store()
     {
-        $attributes = request()->validate([
-            'title' => 'required|min:3',
-            'description' => 'required|min:3'
-        ]);
+        $attributes = $this->validateProject();
 
         $attributes['owner_id'] = auth()->id();
 
@@ -49,12 +44,6 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {        
-        // abort_unless(auth()->user()->owns($project), 403);
-
-        // abort_if($project->owner_id !== auth()->id(), 403);
-
-        // $this->authorize('update', $project);
-
         abort_unless(\Gate::allows('update', $project), 403);
 
         return view('projects.show', compact('project'));
@@ -67,15 +56,7 @@ class ProjectsController extends Controller
 
     public function update(Project $project)
     {        
-        $attributes = request()->validate([
-            'title' => 'required|min:3',
-            'description' => 'required|min:3'
-        ]);
-
-        $project->update(request([
-            'title',
-            'description'
-        ]));
+        $project->update($this->validateProject());
 
         return redirect('/projects');
     }
