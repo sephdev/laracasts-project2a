@@ -3,8 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\ProjectCreated;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ProjectCreated as ProjectCreatedMail;
 
 class SendProjectCreatedNotification
 {
@@ -26,6 +26,8 @@ class SendProjectCreatedNotification
      */
     public function handle(ProjectCreated $event)
     {
-        //
+        Mail::to($event->project->owner->email)->send(
+            new ProjectCreatedMail($event->project)
+        );
     }
 }
