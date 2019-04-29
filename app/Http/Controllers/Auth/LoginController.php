@@ -22,18 +22,18 @@ class LoginController extends Controller
     // CODE EDIT BY Joseph
 
     // ORIGINAL CODE
-    // use AuthenticatesUsers;
+    use AuthenticatesUsers;
 
     // CODE FOR ROUTING LOGOUT
-    use AuthenticatesUsers {
-        logout as performLogout;
-    }
+    // use AuthenticatesUsers {
+    //     logout as performLogout;
+    // }
 
-    public function logout(Request $request)
-    {
-        $this->performLogout($request);
-        return redirect()->route('home');
-    }
+    // public function logout(Request $request)
+    // {
+    //     $this->performLogout($request);
+    //     return redirect()->route('home');
+    // }
 
     // CODE EDIT END
 

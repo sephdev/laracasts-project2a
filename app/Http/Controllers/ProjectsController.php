@@ -35,9 +35,11 @@ class ProjectsController extends Controller
 
         $project =  Project::create($attributes);
 
-        Mail::to($project->owner->email)->send(
-            new ProjectCreated($project)
-        );
+        // Mail::to($project->owner->email)->send(
+        //     new ProjectCreated($project)
+        // );
+
+        event(new ProjectCreated($project));
 
         return redirect('/projects');
     }
