@@ -26,6 +26,7 @@ class SendProjectCreatedNotification
      */
     public function handle(ProjectCreated $event)
     {
+        // error
         Mail::to($event->project->owner->email)->send(
             new ProjectCreatedMail($event->project)
         );
